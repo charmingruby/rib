@@ -20,9 +20,9 @@ tasks:
       - go test ./... -race
 
   rename:
-    desc: "Rename project (usage: task rename <new-name>)"
+    desc: "Runs on project scaffold to rename the project (usage: task rename -- new-name)"
     cmds:
-      - ./scripts/rename.sh {{.NAME}}
+      - ./scripts/rename.sh {{.CLI_ARGS}}
 
   tag:
     desc: Create a git tag
