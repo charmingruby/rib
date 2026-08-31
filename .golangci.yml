@@ -7,7 +7,7 @@ formatters:
   settings:
     goimports:
       local-prefixes:
-        - github.com/charmingruby/fgp
+        - github.com/charmingruby/rib
     golines:
       max-len: 120
   exclusions:
@@ -190,7 +190,3 @@ linters:
     reassign:
       patterns:
         - ".*"
-
-    rowserrcheck:
-      packages:
-        - github.com/jmoiron/sqlx

@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  lint:
+    desc: Runs linter
+    cmds:
+      - go fmt ./...
+      - golangci-lint run ./...
+  lint-fix:
+    desc: Runs linter with auto-fix
+    cmds:
+      - go fmt ./...
+      - golangci-lint run --fix ./...
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test ./... -race
+
+  rename:
+    desc: "Rename project (usage: task rename <new-name>)"
+    cmds:
+      - ./scripts/rename.sh {{.NAME}}
+
+  tag:
+    desc: Create a git tag
+    cmd: git tag -a {{.V}} -m "Release {{.V}}"
