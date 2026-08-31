@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/charmingruby/rib/greeting"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/charmingruby/rib/greeting"
 )
 
 func TestGreet(t *testing.T) {
@@ -14,5 +15,5 @@ func TestGreet(t *testing.T) {
 	msg := greeting.Greet(name)
 	expectedMsg := fmt.Sprintf("hi, %s!", name)
 
-	assert.Equal(t, msg, expectedMsg)
+	assert.Equal(t, expectedMsg, msg)
 }
