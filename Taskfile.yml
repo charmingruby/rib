@@ -13,12 +13,17 @@ tasks:
     cmds:
       - go fmt ./...
       - golangci-lint run --fix ./...
-
   test:
     desc: Run tests
     cmds:
       - go test ./... -race
-
+  release:
+    desc: "Create and push git tag to trigger release (usage: task tag V=0.1.0)"
+    requires:
+      vars: [V]
+    cmds:
+      - git tag -a v{{.V}} -m "Release v{{.V}}"
+      - git push origin v{{.V}}
   rename:
     desc: "Runs on project scaffold to rename the project (usage: task rename -- new-name)"
     cmds:
@@ -28,7 +33,3 @@ tasks:
           [ -f "$file" ] || continue
           sed -i.bak "s/rib/{{.CLI_ARGS}}/g" "$file" && rm -f "$file.bak"
         done
-
-  tag:
-    desc: Create a git tag
-    cmd: git tag -a {{.V}} -m "Release {{.V}}"
