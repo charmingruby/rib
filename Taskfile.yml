@@ -22,7 +22,12 @@ tasks:
   rename:
     desc: "Runs on project scaffold to rename the project (usage: task rename -- new-name)"
     cmds:
-      - ./scripts/rename.sh {{.CLI_ARGS}}
+      - |
+        [ -n "{{.CLI_ARGS}}" ] || { echo "Usage: task rename -- <new-name>"; exit 1; }
+        for file in ./* ./.*; do
+          [ -f "$file" ] || continue
+          sed -i.bak "s/rib/{{.CLI_ARGS}}/g" "$file" && rm -f "$file.bak"
+        done
 
   tag:
     desc: Create a git tag
