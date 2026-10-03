@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/charmingruby/rib"
 	"github.com/stretchr/testify/assert"
-
-	"github.com/charmingruby/rib/greeting"
 )
 
 func TestGreet(t *testing.T) {
